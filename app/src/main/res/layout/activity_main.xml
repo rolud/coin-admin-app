@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainActivity"
+    android:background="?attr/colorBackground">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:background="@color/transparent"
+        app:elevation="0dp">
+        <include layout="@layout/collapsing_toolbar_main_activity"
+            android:id="@+id/am_toolbar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_overlapTop="35dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/background_card"
+                android:backgroundTint="?attr/colorBackground_lv1"
+                android:elevation="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="@dimen/standard_screen_padding"/>
+
+            <com.airbnb.epoxy.EpoxyRecyclerView
+                android:id="@+id/am_transactions_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:overScrollMode="never"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/am_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_plus"
+        app:tint="@color/white"
+        android:contentDescription="add_transaction"
+        android:layout_margin="@dimen/standard_screen_padding"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/dcp_back"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/background_dialog"
+        android:paddingVertical="@dimen/standard_screen_padding_half"
+        android:layout_marginHorizontal="@dimen/standard_screen_padding"
+        android:layout_marginVertical="50dp"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_category"
+            android:layout_marginHorizontal="@dimen/standard_screen_padding_half"/>
+
+        <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/dcp_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

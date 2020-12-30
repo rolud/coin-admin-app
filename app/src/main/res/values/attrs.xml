@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorBackground" format="color" />
+    <attr name="colorBackground_lv1" format="color" />
+    <attr name="colorBackground_dialog" format="color" />
+
+    <attr name="colorContent" type="color" />
+    <attr name="colorContentSoft" type="color" />
+
+    <declare-styleable name="TopBar">
+        <attr name="tb_title" format="string" />
+        <attr name="tb_left_icon" format="reference" />
+        <attr name="tb_right_icon" format="reference" />
+    </declare-styleable>
+</resources>

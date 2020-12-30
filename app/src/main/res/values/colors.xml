@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="chiarodiluna">#F6F6F6</color>
+
+    <!-- Black -->
+    <color name="black">#000000</color>
+    <color name="carbone">#121212</color>
+    <color name="lava">#222222</color>
+    <color name="riso_venere">#2C2C2C</color>
+    <color name="nero_incubo">#414042</color>
+
+    <!-- Gray -->
+    <color name="shadow">#616161</color>
+    <color name="grigio_fumo">#898989</color>
+    <color name="roccia">#ABABAB</color>
+    <color name="argento">#D1D1D1</color>
+    <color name="perla">#E6E6E6</color>
+
+    <!-- Orange -->
+    <color name="mandarino">#FF9D64</color>
+    <color name="mandarino_dark">#FF8D4B</color>
+    <color name="mandarino_light">#FFC29C</color>
+    <color name="mandarino_moon">#FFE0CE</color>
+
+    <!-- Red -->
+    <color name="darth_maul">#C32328</color>
+    <color name="darth_maul_light">#DF646A</color>
+    <color name="darth_maul_moon">#EEACB0</color>
+
+    <!-- Yellow -->
+    <color name="lemon_tree">#FFC70D</color>
+    <color name="lemon_tree_light">#FFC70D</color>
+
+    <!-- Green -->
+    <color name="broccolo">#3BB57D</color>
+    <color name="broccolo_light">#9CDABD</color>
+
+    <!-- Blue -->
+    <color name="blu_profondo">#040187</color>
+    <color name="blu_notte">#16155A</color>
+    <color name="blu_oceano">#2647BF</color>
+    <color name="blu_leggero">#04b5e0</color>
+    <color name="blu_chiaro">#D6F7FF</color>
+
+    <!-- Pink -->
+    <color name="pink">#FBC7CB</color>
+    <color name="pink_light">#FAEEEF</color>
+
+    <!-- Color Picker Default Colors -->
+    <color name="navy">#001F3F</color>
+    <color name="blue">#0074D9</color>
+    <color name="aqua">#7FDBFF</color>
+    <color name="teal">#39CCCC</color>
+    <color name="olive">#3D9970</color>
+    <color name="green">#2ECC40</color>
+    <color name="lime">#01FF70</color>
+    <color name="yellow">#FFDC00</color>
+    <color name="orange">#FF851B</color>
+    <color name="red">#FF4136</color>
+    <color name="maroon">#85144B</color>
+    <color name="fuchsia">#F012BE</color>
+    <color name="purple">#B10DC9</color>
+    <color name="gray">#AAAAAA</color>
+
+</resources>

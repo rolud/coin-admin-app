@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="@dimen/standard_screen_padding">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vtm_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_card"
+        android:backgroundTint="?attr/colorBackground_lv1"
+        android:paddingVertical="5dp">
+
+        <ImageView
+            android:id="@+id/vtm_payment_method_iv"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/background_circle"
+            android:backgroundTint="?attr/colorBackground"
+            android:src="@drawable/ic_money"
+            app:tint="@color/broccolo"
+            android:padding="10dp"
+            android:layout_marginStart="@dimen/standard_screen_padding_half"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/standard_screen_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vtm_payment_method_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <TextView
+                android:id="@+id/vtm_amount_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:includeFontPadding="false"/>
+            <TextView
+                android:id="@+id/vtm_desc_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:includeFontPadding="false"/>
+            <TextView
+                android:id="@+id/vtm_category_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_light"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:includeFontPadding="false"/>
+            <TextView
+                android:id="@+id/vtm_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_light"
+                android:includeFontPadding="false"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

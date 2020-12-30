@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/end" />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/ctma_menu_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/standard_screen_padding"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"/>
+        <Constraint
+            android:id="@+id/ctma_month_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            motion:layout_constraintTop_toBottomOf="@id/ctma_menu_iv" />
+        <Constraint
+            android:id="@+id/ctma_paid_difference_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:layout_marginTop="@dimen/standard_screen_padding"
+            motion:layout_constraintTop_toTopOf="@id/ctma_month_recycler_view"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/ctma_paid_in_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            motion:layout_constraintStart_toStartOf="@id/ctma_paid_difference_tv"
+            motion:layout_constraintEnd_toEndOf="@id/ctma_paid_difference_tv"
+            motion:layout_constraintBottom_toTopOf="@id/ctma_paid_difference_tv" />
+        <Constraint
+            android:id="@+id/ctma_paid_out_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="0dp"
+            motion:layout_constraintStart_toStartOf="@id/ctma_paid_difference_tv"
+            motion:layout_constraintEnd_toEndOf="@id/ctma_paid_difference_tv"
+            motion:layout_constraintTop_toBottomOf="@id/ctma_paid_difference_tv" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/ctma_menu_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="@dimen/standard_screen_padding"
+            android:layout_marginBottom="10dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/ctma_month_recycler_view" />
+        <Constraint
+            android:id="@+id/ctma_month_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            motion:layout_constraintBottom_toTopOf="@id/ctma_paid_in_tv" />
+        <Constraint
+            android:id="@+id/ctma_paid_difference_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/ctma_paid_in_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_screen_padding"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/ctma_paid_out_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/standard_screen_padding"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+
+    </ConstraintSet>
+
+</MotionScene>

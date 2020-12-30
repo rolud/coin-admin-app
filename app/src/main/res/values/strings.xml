@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Coin Admin</string>
+
+    <string name="cancel">Annulla</string>
+    <string name="close">Chiudi</string>
+    <string name="delete">Elimina</string>
+    <string name="back">Indietro</string>
+    <string name="menu">Menu</string>
+    <string name="save">Salva</string>
+    <string name="select">Seleziona</string>
+
+    <string name="amount_euros">%1$s €</string>
+
+    <string name="transaction_new">Nuovo movimento</string>
+    <string name="transaction_category">Categoria</string>
+    <string name="transaction_no_category">Senza categoria</string>
+    <string name="transaction_description">Descrizione</string>
+    <string name="transaction_amount">Importo</string>
+    <string name="transaction_date">Data</string>
+
+    <string name="transaction_paid_in">Entrata</string>
+    <string name="transaction_paid_out">Uscita</string>
+    <string name="transaction_payment_cash">Contanti</string>
+    <string name="transaction_payment_digital">Digitale</string>
+    <string name="transaction_payment_type">Pagamento</string>
+
+    <string name="category_add">Aggiungi categoria</string>
+    <string name="category_new">Nuova categoria</string>
+    <string name="category_name">Nome</string>
+    <string name="category_color">Colore</string>
+
+    <string name="select_color">Seleziona un colore</string>
+    <string name="select_category">Seleziona una categoria</string>
+
+</resources>

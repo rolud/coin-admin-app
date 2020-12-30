@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.flockware.coinadmin.ui.views.MotionCollapsingToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_top_bar"
+    android:paddingVertical="@dimen/standard_screen_padding"
+    app:layoutDescription="@xml/motion_scene_collapsing_toolbar_main_activity"
+    android:fitsSystemWindows="false"
+    android:minHeight="175dp"
+    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+    android:scrollbarAlwaysDrawHorizontalTrack="false">
+
+    <ImageView
+        android:id="@+id/ctma_menu_iv"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_menu"
+        app:tint="@color/white"
+        android:contentDescription="@string/menu" />
+
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/ctma_month_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/ctma_paid_in_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/broccolo"
+        android:fontFamily="@font/poppins_semibold" />
+
+    <TextView
+        android:id="@+id/ctma_paid_difference_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@color/darth_maul"
+        android:fontFamily="@font/poppins_bold" />
+
+
+    <TextView
+        android:id="@+id/ctma_paid_out_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/darth_maul"
+        android:fontFamily="@font/poppins_semibold" />
+
+</com.flockware.coinadmin.ui.views.MotionCollapsingToolbar>

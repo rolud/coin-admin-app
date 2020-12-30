@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="standard_corner_radius">20dp</dimen>
+    <dimen name="standard_corner_radius_dialog">5dp</dimen>
+
+    <dimen name="standard_screen_padding">25dp</dimen>
+    <dimen name="standard_screen_padding_half">12.5dp</dimen>
+</resources>
