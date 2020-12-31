@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import com.flockware.coinadmin.R
 import com.flockware.coinadmin.databinding.ActivityMainBinding
 import com.flockware.coinadmin.ui.dialogs.BottomSheetMenu
-import com.flockware.coinadmin.ui.login.InsertPinActivity
 import com.flockware.coinadmin.ui.main.controllers.MonthsPickerController
 import com.flockware.coinadmin.ui.main.controllers.TransactionsController
+import com.flockware.coinadmin.ui.settings.SettingsActivity
 import com.flockware.coinadmin.ui.transaction.AddTransactionActivity
 import com.flockware.coinadmin.utils.*
 import com.google.android.material.snackbar.Snackbar
@@ -106,6 +106,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun initClickListeners() {
         binding.apply {
+            amToolbar.ctmaMenuIv.setOnClickListener {
+                val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                this@MainActivity.startActivity(intent)
+            }
             amFab.setOnClickListener {
                 val intent = Intent(this@MainActivity, AddTransactionActivity::class.java)
                 this@MainActivity.startActivity(intent)

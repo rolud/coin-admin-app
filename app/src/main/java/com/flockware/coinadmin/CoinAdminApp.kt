@@ -13,7 +13,7 @@ class CoinAdminApp : Application() {
         startKoin {
             androidLogger()
             androidContext(this@CoinAdminApp)
-            modules(databaseModule, repositoriesModule, viewModelsModule)
+            modules(databaseModule, repositoriesModule, sessionModule, viewModelsModule)
         }
 
     }

@@ -15,7 +15,7 @@
         android:id="@+id/ctma_menu_iv"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:src="@drawable/ic_menu"
+        android:src="@drawable/ic_settings"
         app:tint="@color/white"
         android:contentDescription="@string/menu" />
 

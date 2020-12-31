@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Coin Admin</string>
+    <string name="app_name_version">Coin Admin v%1$s</string>
+    <string name="flockware">flockware</string>
+
+    <string name="shared_preferences_session">coin_admin_session_shared_preferences</string>
 
     <string name="digit_0">0</string>
     <string name="digit_1">1</string>
@@ -44,6 +48,13 @@
     <string name="select_color">Seleziona un colore</string>
     <string name="select_category">Seleziona una categoria</string>
 
+    <string name="settings">Impostazioni</string>
+    <string name="settings_categories">Gestione categorie</string>
+    <string name="settings_create_pin">Imposta pin</string>
+    <string name="settings_edit_pin">Impostazioni</string>
+    <string name="settings_use_fingerprint">Accedi con l\'impronta digitale</string>
 
     <string name="pin_insert_pin">Inserisci PIN</string>
+    <string name="pin_insert_new_pin">Scegli il nuovo PIN</string>
+
 </resources>

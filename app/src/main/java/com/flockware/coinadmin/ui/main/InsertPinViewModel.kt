@@ -1,9 +1,13 @@
-package com.flockware.coinadmin.ui.login
+package com.flockware.coinadmin.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.flockware.coinadmin.utils.SessionManager
+import com.flockware.coinadmin.utils.getSHA512
 
-class InsertPinViewModel: ViewModel() {
+class InsertPinViewModel(
+        private val sessionManager: SessionManager
+): ViewModel() {
 
     val digit1: MutableLiveData<Int> = MutableLiveData()
     val digit2: MutableLiveData<Int> = MutableLiveData()
@@ -11,7 +15,12 @@ class InsertPinViewModel: ViewModel() {
     val digit4: MutableLiveData<Int> = MutableLiveData()
 
     val pinValid: MutableLiveData<Boolean> = MutableLiveData()
+    val startApp: MutableLiveData<Boolean> = MutableLiveData()
 
+    fun checkExistingPin() {
+        if (sessionManager.pin.isNullOrEmpty())
+            startApp.value = true
+    }
     fun insertDigit(digit: Int) {
         when {
             digit1.value == null -> digit1.value = digit
@@ -31,10 +40,8 @@ class InsertPinViewModel: ViewModel() {
     }
 
     private fun checkPin() {
-        pinValid.value = digit1.value == 1
-                && digit2.value == 2
-                && digit3.value == 3
-                && digit4.value == 4
+        val pin = "${digit1.value}${digit2.value}${digit3.value}${digit4.value}".getSHA512()
+        pinValid.value = pin == sessionManager.pin
     }
 
     fun removeAllDigits() {
