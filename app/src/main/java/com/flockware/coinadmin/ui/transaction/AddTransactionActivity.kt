@@ -41,6 +41,11 @@ class AddTransactionActivity : AppCompatActivity() {
         setClickListeners()
 
         observeData()
+
+        if (intent.hasExtra("edit_transaction_id")) {
+            val transactionId = intent.getLongExtra("edit_transaction_id", 0L)
+            viewModel.loadTransactionForEdit(transactionId)
+        }
     }
 
     private fun observeData() {
@@ -65,6 +70,26 @@ class AddTransactionActivity : AppCompatActivity() {
                 }
                 is AppResult.Error -> {
                     Snackbar.make(binding.root, "Error: ${result.message}", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.transactionForEdit.observe(this) { transaction ->
+            if (transaction != null) {
+                binding.apply {
+                    aatCategoryEt.setText(transaction.category?.name ?: resources.getString(R.string.transaction_no_category))
+                    aatDescEt.setText(transaction.desc)
+                    aatAmountEt.setText(transaction.amount.toString())
+                    aatDateEt.setText(transaction.date.pattern(DatePattern.SLASH_YEAR))
+                    viewModel.transactionDate = transaction.date
+                    when (transaction.paymentMethod) {
+                        Transaction.PaymentMethod.CASH -> aatBtnPaymentCash.performClick()
+                        Transaction.PaymentMethod.DIGITAL -> aatBtnPaymentDigital.performClick()
+                    }
+                    when (transaction.type) {
+                        Transaction.TransactionType.PAID_IN -> aatBtnPaidIn.performClick()
+                        Transaction.TransactionType.PAID_OUT -> aatBtnPaidOut.performClick()
+                    }
                 }
             }
         }

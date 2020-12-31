@@ -16,6 +16,10 @@ interface TransactionDao {
     @Update
     fun updateTransaction(transaction: Transaction)
 
+    @Query("SELECT * FROM `Transaction` WHERE id = :transactionId")
+    fun getTransaction(transactionId: Long): Transaction?
+
+
     @Query("SELECT * FROM `Transaction`")
     fun getAllTransactions(): List<Transaction>
 

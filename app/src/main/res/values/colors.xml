@@ -2,6 +2,7 @@
 <resources>
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_transparent">#88FFFFFF</color>
     <color name="chiarodiluna">#F6F6F6</color>
 
     <!-- Black -->

@@ -46,5 +46,5 @@ enum class DatePattern(val pattern: String) {
     KEBAB_YEAR("yyyy-MM-dd"),
     SLASH_YEAR("dd/MM/yyyy"),
     EXPLICIT_MONTH_YEAR("MMMM yyyy"),
-    EXPLICIT_DAY_MONTH_YEAR("dd MMM yy")
+    EXPLICIT_DAY_MONTH_YEAR("dd MMMM yyyy")
 }

@@ -9,6 +9,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Category(
         @PrimaryKey(autoGenerate = true) val id: Long = 0,
-        val name: String,
-        val color: String?
+        var name: String,
+        var color: String?
 ) : Parcelable

@@ -11,12 +11,12 @@ import java.util.*
 @Parcelize
 data class Transaction(
         @PrimaryKey(autoGenerate = true) val id: Long = 0,
-        @Embedded(prefix = "category_") val category: Category? = null,
-        val desc: String,
-        val amount: Float,
-        val date: Date,
-        val type: TransactionType,
-        val paymentMethod: PaymentMethod
+        @Embedded(prefix = "category_") var category: Category? = null,
+        var desc: String,
+        var amount: Float,
+        var date: Date,
+        var type: TransactionType,
+        var paymentMethod: PaymentMethod
 ) : Parcelable {
     enum class PaymentMethod {
         CASH, DIGITAL

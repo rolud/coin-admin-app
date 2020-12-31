@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.flockware.coinadmin.R
 import com.flockware.coinadmin.databinding.ActivityMainBinding
+import com.flockware.coinadmin.ui.dialogs.BottomSheetMenu
+import com.flockware.coinadmin.ui.login.InsertPinActivity
 import com.flockware.coinadmin.ui.main.controllers.MonthsPickerController
 import com.flockware.coinadmin.ui.main.controllers.TransactionsController
 import com.flockware.coinadmin.ui.transaction.AddTransactionActivity
 import com.flockware.coinadmin.utils.*
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.getViewModel
 import travel.ithaka.android.horizontalpickerlib.PickerLayoutManager
 import java.util.*
@@ -26,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val snapHelper = LinearSnapHelper()
 
     private var firstModelsBuild = true
+    private var currentMonthPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = getViewModel()
 
-
         initMonthController()
         initTransactionsController()
         initClickListeners()
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.initMonthsList()
     }
+
 
 
     private fun initMonthController() {
@@ -63,12 +67,14 @@ class MainActivity : AppCompatActivity() {
         snapHelper.attachToRecyclerView(binding.amToolbar.ctmaMonthRecyclerView)
         pickerLayoutManager.setOnScrollStopListener {
             val pos = binding.amToolbar.ctmaMonthRecyclerView.getChildAdapterPosition(it)
+            currentMonthPosition = pos
             viewModel.selectMonth(pos)
         }
 
         monthsController.addModelBuildListener {
             if (firstModelsBuild) {
-                binding.amToolbar.ctmaMonthRecyclerView.smoothScrollToPosition(3)
+                currentMonthPosition = 3
+                binding.amToolbar.ctmaMonthRecyclerView.smoothScrollToPosition(currentMonthPosition)
                 firstModelsBuild = false
             }
         }
@@ -81,6 +87,19 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(false)
             adapter = transactionsController.adapter
+        }
+
+        transactionsController.onOptionsClick = { transaction ->
+            BottomSheetMenu.Builder(this)
+                    .addMenuOption(resources.getString(R.string.edit), ColorUtils.getColorContent(this)) {
+                        val intent = Intent(this, AddTransactionActivity::class.java)
+                        intent.putExtra("edit_transaction_id", transaction.id)
+                        this.startActivity(intent)
+                    }
+                    .addMenuOption(resources.getString(R.string.delete), ColorUtils.getColorContent(this)) { viewModel.deleteTransaction(transaction) }
+                    .addMenuOption(resources.getString(R.string.close), ColorUtils.getColorContentSoft(this))
+                    .build()
+                    .show()
         }
 
     }
@@ -106,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.transactionsLive.observe(this) {
-            viewModel.reloadTransictions()
+            viewModel.reloadTransactions()
         }
 
         viewModel.paidInTotal.observe(this) { value ->
@@ -136,6 +155,10 @@ class MainActivity : AppCompatActivity() {
                         value > 0f -> "+" + resources.getString(R.string.amount_euros, "%.2f".format(value).replace(".", ","))
                         else -> resources.getString(R.string.amount_euros, "%.2f".format(value).replace(".", ","))
                     }
+        }
+
+        viewModel.snackbarMessage.observe(this) { message ->
+            Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
         }
     }
 }

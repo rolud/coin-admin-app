@@ -53,6 +53,7 @@
         android:src="@drawable/ic_plus"
         app:tint="@color/white"
         android:contentDescription="add_transaction"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         android:layout_margin="@dimen/standard_screen_padding"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

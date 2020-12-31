@@ -28,6 +28,9 @@ class AddTransactionViewModel(
 
     val transactionSaved: MutableLiveData<AppResult<Boolean>> = MutableLiveData()
 
+    var editMode: Boolean = false
+    val transactionForEdit: MutableLiveData<Transaction> = MutableLiveData()
+
     fun getCategories() {
         viewModelScope.launch {
             val result = categoryRepository.getAllCategories()
@@ -79,23 +82,59 @@ class AddTransactionViewModel(
         }
 
 
-        val transaction = Transaction(
-            category = category,
-            desc = desc,
-            amount = amount,
-            date = transactionDate!!,
-            type = transactionType!!,
-            paymentMethod = paymentMethod!!
-        )
+        if (editMode) {
+            val transaction = transactionForEdit.value!!
+            transaction.apply {
+                this.desc = desc
+                this.amount = amount
+                this.category = this@AddTransactionViewModel.category
+                this.date = this@AddTransactionViewModel.transactionDate!!
+                this.type = this@AddTransactionViewModel.transactionType!!
+                this.paymentMethod = this@AddTransactionViewModel.paymentMethod!!
+            }
 
-        viewModelScope.launch {
-            addTransaction(transaction)
+            viewModelScope.launch {
+                updateTransaction(transaction)
+            }
+        } else {
+            val transaction = Transaction(
+                    category = category,
+                    desc = desc,
+                    amount = amount,
+                    date = transactionDate!!,
+                    type = transactionType!!,
+                    paymentMethod = paymentMethod!!
+            )
+
+            viewModelScope.launch {
+                addTransaction(transaction)
+            }
         }
     }
 
     private suspend fun addTransaction(transaction: Transaction) {
         transactionRepository.addTransaction(transaction)
         transactionSaved.value = AppResult.Success(true)
+    }
+
+    private suspend fun updateTransaction(transaction: Transaction) {
+        transactionRepository.updateTransaction(transaction)
+        transactionSaved.value = AppResult.Success(true)
+    }
+
+    fun loadTransactionForEdit(transactionId: Long) {
+        editMode = true
+        viewModelScope.launch {
+            val result = transactionRepository.getTransaction(transactionId)
+            when (result) {
+                is AppResult.Success -> {
+                    category = result.successData.category
+                    transactionDate = result.successData.date
+                    transactionForEdit.value = result.successData
+                }
+                is AppResult.Error -> transactionForEdit.value = null
+            }
+        }
     }
 
 }

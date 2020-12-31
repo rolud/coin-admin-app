@@ -26,6 +26,7 @@ class TransactionModel @JvmOverloads constructor(
     private val binding = ViewTransactionModelBinding.inflate(LayoutInflater.from(context), this, true)
 
     @ModelProp lateinit var transaction: Transaction
+    @ModelProp(ModelProp.Option.DoNotHash) lateinit var onOptionsClick: () -> Unit
 
     @AfterPropsSet
     fun setupModel() {
@@ -47,8 +48,12 @@ class TransactionModel @JvmOverloads constructor(
             vtmCategoryTv.text = transaction.category?.name ?: resources.getString(R.string.transaction_no_category)
             vtmDateTv.text = transaction.date.pattern(DatePattern.EXPLICIT_DAY_MONTH_YEAR)
 
+            vtmDescTv.isSelected = true
+
             if (transaction.category?.color != null)
                 vtmLayout.backgroundTintList = ColorStateList.valueOf(Color.parseColor(transaction.category!!.color!!))
+
+            vtmOptionsIv.setOnClickListener { onOptionsClick() }
         }
     }
 }

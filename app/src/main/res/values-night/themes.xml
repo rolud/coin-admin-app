@@ -19,6 +19,8 @@
         <!-- navigation bar color. -->
         <item name="android:navigationBarColor">?attr/colorBackground</item>
 
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+
         <item name="android:textColor">?attr/colorContent</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>

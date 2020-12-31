@@ -30,6 +30,8 @@ class MainViewModel(
     val paidOutTotal: MutableLiveData<Float> = MutableLiveData()
     val paidDifferenceTotal: MutableLiveData<Float> = MutableLiveData()
 
+    val snackbarMessage: MutableLiveData<String> = MutableLiveData()
+
     fun initMonthsList() {
         monthsList.add(today.minusMonths(2))
         monthsList.add(today.previousMonth())
@@ -42,6 +44,10 @@ class MainViewModel(
         viewModelScope.launch {
             loadTransactions(today)
         }
+    }
+
+    fun getTodayDatePosition(): Int {
+        return monthsList.indexOf(today)
     }
 
     fun selectMonth(position: Int) {
@@ -67,9 +73,16 @@ class MainViewModel(
         }
     }
 
-    fun reloadTransictions() {
+    fun reloadTransactions() {
         viewModelScope.launch {
             loadTransactions()
+        }
+    }
+
+    fun deleteTransaction(transaction: Transaction) {
+        viewModelScope.launch {
+            transactionRepository.deleteTransaction(transaction)
+            snackbarMessage.value = "Movimento eliminato"
         }
     }
 
