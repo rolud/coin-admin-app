@@ -17,6 +17,7 @@ interface TransactionRepository {
     suspend fun updateTransaction(transaction: Transaction)
     suspend fun getTransaction(transactionId: Long): AppResult<Transaction>
     suspend fun getTransactionsByMonth(date: Date): AppResult<List<Transaction>>
+    suspend fun getAllTransactions(): List<Transaction>
     suspend fun deleteTransaction(transaction: Transaction)
 }
 
@@ -56,11 +57,18 @@ class TransactionRepositoryImpl(
         return AppResult.Success(data)
     }
 
+    override suspend fun getAllTransactions(): List<Transaction> {
+        return withContext(Dispatchers.IO) {
+            database.transactionDao.getAllTransactions()
+        }
+    }
+
     override suspend fun deleteTransaction(transaction: Transaction) {
         withContext(Dispatchers.IO) {
             database.transactionDao.deleteTransaction(transaction)
         }
     }
+
 }
 
 fun getTransactionRepository(database: CoinAdminDatabase): TransactionRepository = TransactionRepositoryImpl(database)

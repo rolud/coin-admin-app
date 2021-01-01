@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/standard_screen_padding_half"
+    android:paddingHorizontal="@dimen/standard_screen_padding_half">
+
+    <LinearLayout
+        android:id="@+id/vcm_layout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/background_card"
+        android:padding="@dimen/standard_screen_padding_half"
+        android:gravity="center"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/vcm_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:maxLines="3"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="1"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="-5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

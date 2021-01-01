@@ -17,6 +17,7 @@
     <string name="digit_9">9</string>
 
     <string name="log_in">Accedi</string>
+    <string name="add">Aggiungi</string>
     <string name="cancel">Annulla</string>
     <string name="authorizes">Autorizza</string>
     <string name="close">Chiudi</string>
@@ -48,6 +49,8 @@
     <string name="category_new">Nuova categoria</string>
     <string name="category_name">Nome</string>
     <string name="category_color">Colore</string>
+
+    <string name="categories_title">Categorie</string>
 
     <string name="select_color">Seleziona un colore</string>
     <string name="select_category">Seleziona una categoria</string>

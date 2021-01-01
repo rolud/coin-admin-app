@@ -36,7 +36,7 @@ class TransactionModel @JvmOverloads constructor(
                 Transaction.PaymentMethod.CASH -> R.drawable.ic_money
                 Transaction.PaymentMethod.DIGITAL -> R.drawable.ic_credit_card
             }
-            val color = when (transaction.type) {
+            var color = when (transaction.type) {
                 Transaction.TransactionType.PAID_IN -> ColorUtils.BROCCOLO
                 Transaction.TransactionType.PAID_OUT -> ColorUtils.DARTH_MAUL
             }
@@ -50,8 +50,12 @@ class TransactionModel @JvmOverloads constructor(
 
             vtmDescTv.isSelected = true
 
-            if (transaction.category?.color != null)
-                vtmLayout.backgroundTintList = ColorStateList.valueOf(Color.parseColor(transaction.category!!.color!!))
+            color =
+                if (transaction.category?.color != null)
+                    Color.parseColor(transaction.category!!.color!!)
+                else
+                    ColorUtils.getColorBackgroundLv1(context)
+            vtmLayout.backgroundTintList = ColorStateList.valueOf(color)
 
             vtmOptionsIv.setOnClickListener { onOptionsClick() }
         }

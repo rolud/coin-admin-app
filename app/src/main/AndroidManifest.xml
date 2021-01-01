@@ -21,7 +21,10 @@
         <activity android:name=".ui.main.MainActivity" android:screenOrientation="portrait"/>
 
         <activity android:name=".ui.transaction.AddTransactionActivity" android:screenOrientation="portrait" />
+
         <activity android:name=".ui.category.AddCategoryActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.category.CategoriesActivity" android:screenOrientation="portrait" />
+
         <activity android:name=".ui.settings.SettingsActivity" android:screenOrientation="portrait" />
         <activity android:name=".ui.settings.SetPinActivity" android:screenOrientation="portrait" />
     </application>

@@ -2,16 +2,14 @@ package com.flockware.coinadmin.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.CompoundButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.flockware.coinadmin.BuildConfig
 import com.flockware.coinadmin.R
 import com.flockware.coinadmin.databinding.ActivitySettingsBinding
-import com.flockware.coinadmin.utils.LoggerCompat
+import com.flockware.coinadmin.ui.category.CategoriesActivity
 import org.koin.android.viewmodel.ext.android.getViewModel
 import java.util.concurrent.Executor
 
@@ -24,7 +22,7 @@ class SettingsActivity: AppCompatActivity() {
     private lateinit var biometricPrompt: BiometricPrompt
     private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
-    private val biometrichAuthSwitchOnCheckChangeListener =
+    private val biometricAuthSwitchOnCheckChangeListener =
         CompoundButton.OnCheckedChangeListener { _, isChecked ->
             if (isChecked) showBiometricAuthentication() else biometricAuthDisabled()
         }
@@ -54,7 +52,10 @@ class SettingsActivity: AppCompatActivity() {
     private fun setClickListeners() {
         binding.apply {
             asTopBar.onLeftIconClick = { this@SettingsActivity.finish() }
-            asCategoriesTv.setOnClickListener {  }
+            asCategoriesTv.setOnClickListener {
+                val intent = Intent(this@SettingsActivity, CategoriesActivity::class.java)
+                this@SettingsActivity.startActivity(intent)
+            }
             asPinTv.setOnClickListener {
                 val intent = Intent(this@SettingsActivity, SetPinActivity::class.java)
                 this@SettingsActivity.startActivity(intent)
@@ -62,7 +63,7 @@ class SettingsActivity: AppCompatActivity() {
             asFingerprintTv.setOnClickListener {
                 asFingerprintSwitch.isChecked = asFingerprintSwitch.isChecked.not()
             }
-            asFingerprintSwitch.setOnCheckedChangeListener(biometrichAuthSwitchOnCheckChangeListener)
+            asFingerprintSwitch.setOnCheckedChangeListener(biometricAuthSwitchOnCheckChangeListener)
         }
     }
 
@@ -79,7 +80,7 @@ class SettingsActivity: AppCompatActivity() {
                 if (binding.asFingerprintSwitch.isChecked != viewModel.isBiometricAuthEnabled) {
                     binding.asFingerprintSwitch.setOnCheckedChangeListener(null)
                     binding.asFingerprintSwitch.isChecked = viewModel.isBiometricAuthEnabled
-                    binding.asFingerprintSwitch.setOnCheckedChangeListener(biometrichAuthSwitchOnCheckChangeListener)
+                    binding.asFingerprintSwitch.setOnCheckedChangeListener(biometricAuthSwitchOnCheckChangeListener)
                 }
             } else {
                 binding.asPinTv.text = resources.getString(R.string.settings_create_pin)
@@ -91,7 +92,7 @@ class SettingsActivity: AppCompatActivity() {
                 binding.asFingerprintSwitch.alpha = .3f
                 binding.asFingerprintSwitch.setOnCheckedChangeListener(null)
                 binding.asFingerprintSwitch.isChecked = false
-                binding.asFingerprintSwitch.setOnCheckedChangeListener(biometrichAuthSwitchOnCheckChangeListener)
+                binding.asFingerprintSwitch.setOnCheckedChangeListener(biometricAuthSwitchOnCheckChangeListener)
             }
         }
     }
@@ -130,13 +131,13 @@ class SettingsActivity: AppCompatActivity() {
         viewModel.enableBiometricAuthentication(true)
         binding.asFingerprintSwitch.setOnCheckedChangeListener(null)
         binding.asFingerprintSwitch.isChecked = true
-        binding.asFingerprintSwitch.setOnCheckedChangeListener(biometrichAuthSwitchOnCheckChangeListener)
+        binding.asFingerprintSwitch.setOnCheckedChangeListener(biometricAuthSwitchOnCheckChangeListener)
     }
 
     private fun biometricAuthDisabled() {
         viewModel.enableBiometricAuthentication(false)
         binding.asFingerprintSwitch.setOnCheckedChangeListener(null)
         binding.asFingerprintSwitch.isChecked = false
-        binding.asFingerprintSwitch.setOnCheckedChangeListener(biometrichAuthSwitchOnCheckChangeListener)
+        binding.asFingerprintSwitch.setOnCheckedChangeListener(biometricAuthSwitchOnCheckChangeListener)
     }
 }

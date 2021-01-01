@@ -33,18 +33,10 @@ class AddTransactionViewModel(
 
     fun getCategories() {
         viewModelScope.launch {
-            val result = categoryRepository.getAllCategories()
-            when (result) {
-                is AppResult.Success -> {
-                    categoriesList.clear()
-                    categoriesList.addAll(result.successData)
-                    showCategory.value = true
-                }
-                is AppResult.Error -> {
-                    // TODO()
-                    showCategory.value = false
-                }
-            }
+            val data = categoryRepository.getAllCategories()
+            categoriesList.clear()
+            categoriesList.addAll(data)
+            showCategory.value = true
         }
     }
 

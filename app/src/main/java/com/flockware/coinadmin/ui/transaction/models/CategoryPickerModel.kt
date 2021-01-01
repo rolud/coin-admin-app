@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import com.airbnb.epoxy.AfterPropsSet
 import com.airbnb.epoxy.ModelProp
@@ -28,7 +29,12 @@ class CategoryPickerModel @JvmOverloads constructor(
     fun setupModel() {
         binding.apply {
             vcpmCategoryNameTv.text = category.name
-            vcpmCategoryColorIv.imageTintList = ColorStateList.valueOf(Color.parseColor(category.color))
+            if (category.color == null) {
+                vcpmCategoryColorIv.visibility = View.GONE
+            } else {
+                vcpmCategoryColorIv.imageTintList = ColorStateList.valueOf(Color.parseColor(category.color))
+                vcpmCategoryColorIv.visibility = View.VISIBLE
+            }
             vcpmLayout.setOnClickListener { onClick() }
         }
     }

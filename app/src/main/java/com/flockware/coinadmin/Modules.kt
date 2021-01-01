@@ -4,6 +4,7 @@ import com.flockware.coinadmin.data.database.getDatabase
 import com.flockware.coinadmin.data.repositories.getCategoryRepository
 import com.flockware.coinadmin.data.repositories.getTransactionRepository
 import com.flockware.coinadmin.ui.category.AddCategoryViewModel
+import com.flockware.coinadmin.ui.category.CategoriesViewModel
 import com.flockware.coinadmin.ui.main.InsertPinViewModel
 import com.flockware.coinadmin.ui.main.MainViewModel
 import com.flockware.coinadmin.ui.settings.SetPinViewModel
@@ -33,7 +34,10 @@ val sessionModule = module {
 val viewModelsModule = module {
 
     viewModel { MainViewModel(get()) }
-    viewModel { AddCategoryViewModel(get()) }
+
+    viewModel { CategoriesViewModel(get(), get()) }
+    viewModel { AddCategoryViewModel(get(), get()) }
+
     viewModel { AddTransactionViewModel(get(), get()) }
 
     viewModel { SettingsViewModel(get()) }

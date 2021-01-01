@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.flockware.coinadmin.R
 import com.flockware.coinadmin.data.AppResult
+import com.flockware.coinadmin.data.models.Category
 import com.flockware.coinadmin.databinding.ActivityAddCategoryBinding
 import com.flockware.coinadmin.utils.ColorUtils
 import com.flockware.coinadmin.utils.ColorUtils.getColorString
@@ -32,6 +33,11 @@ class AddCategoryActivity : AppCompatActivity() {
         initColorPicker()
 
         observeData()
+
+        if (intent.hasExtra("edit_category_id")) {
+            val categoryId = intent.getLongExtra("edit_category_id", 0L)
+            viewModel.loadCategoryForEdit(categoryId)
+        }
     }
 
 
@@ -45,6 +51,11 @@ class AddCategoryActivity : AppCompatActivity() {
                     Snackbar.make(binding.root, "Error: ${result.message}", Snackbar.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        viewModel.categoryForEdit.observe(this) { category ->
+            if (category != null)
+                loadCategory(category)
         }
     }
 
@@ -345,6 +356,44 @@ class AddCategoryActivity : AppCompatActivity() {
                 builder.colorPickerView.setInitialColor(Color.parseColor(viewModel.color ?: "#ffffffff"))
                 builder.show()
             }
+        }
+    }
+
+    private fun loadCategory(category: Category) {
+        binding.aacNameEt.setText(category.name)
+        binding.aacColorPickerNavyIv.setImageResource(0)
+        binding.aacColorPickerBlueIv.setImageResource(0)
+        binding.aacColorPickerAquaIv.setImageResource(0)
+        binding.aacColorPickerTealIv.setImageResource(0)
+        binding.aacColorPickerOliveIv.setImageResource(0)
+        binding.aacColorPickerGreenIv.setImageResource(0)
+        binding.aacColorPickerLimeIv.setImageResource(0)
+        binding.aacColorPickerYellowIv.setImageResource(0)
+        binding.aacColorPickerOrangeIv.setImageResource(0)
+        binding.aacColorPickerRedIv.setImageResource(0)
+        binding.aacColorPickerMaroonIv.setImageResource(0)
+        binding.aacColorPickerFuchsiaIv.setImageResource(0)
+        binding.aacColorPickerPurpleIv.setImageResource(0)
+        binding.aacColorPickerNoColorIv.setImageResource(0)
+        binding.aacColorPickerCustomColorIv.setImageResource(0)
+
+        when (category.color) {
+            ColorUtils.NAVY.getColorString()    -> binding.aacColorPickerNavyIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.BLUE.getColorString()    -> binding.aacColorPickerBlueIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.AQUA.getColorString()    -> binding.aacColorPickerAquaIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.TEAL.getColorString()    -> binding.aacColorPickerTealIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.OLIVE.getColorString()   -> binding.aacColorPickerOliveIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.GREEN.getColorString()   -> binding.aacColorPickerGreenIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.LIME.getColorString()    -> binding.aacColorPickerLimeIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.YELLOW.getColorString()  -> binding.aacColorPickerYellowIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.ORANGE.getColorString()  -> binding.aacColorPickerOrangeIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.RED.getColorString()     -> binding.aacColorPickerRedIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.MAROON.getColorString()  -> binding.aacColorPickerMaroonIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.FUCHSIA.getColorString() -> binding.aacColorPickerFuchsiaIv.setImageResource(R.drawable.ic_check)
+            ColorUtils.PURPLE.getColorString()  -> binding.aacColorPickerPurpleIv.setImageResource(R.drawable.ic_check)
+            null                                -> binding.aacColorPickerNoColorIv.setImageResource(R.drawable.ic_check)
+            else                                -> binding.aacColorPickerCustomColorIv.setImageResource(R.drawable.ic_check)
+
         }
     }
 
