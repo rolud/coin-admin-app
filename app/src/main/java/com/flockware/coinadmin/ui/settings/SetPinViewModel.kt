@@ -16,6 +16,7 @@ class SetPinViewModel(
 
     val editMode: MutableLiveData<Boolean> = MutableLiveData()
     val pinSaved: MutableLiveData<Boolean> = MutableLiveData()
+    val pinValid: MutableLiveData<Boolean> = MutableLiveData()
 
     fun checkExistingPin() {
         editMode.value = !sessionManager.pin.isNullOrEmpty()
@@ -47,8 +48,7 @@ class SetPinViewModel(
 
     private fun checkPin() {
         val pin = "${digit1.value}${digit2.value}${digit3.value}${digit4.value}".getSHA512()
-        if (pin == sessionManager.pin)
-            editMode.value = false
+        pinValid.value = pin == sessionManager.pin
     }
 
     private fun savePin() {
@@ -63,5 +63,16 @@ class SetPinViewModel(
         digit2.value = null
         digit3.value = null
         digit4.value = null
+    }
+
+    fun prepareForNewPin() {
+        editMode.value = false
+    }
+
+    fun removePin() {
+        sessionManager.pin = null
+        sessionManager.isBiometricAuthEnabled = false
+        sessionManager.save()
+        pinSaved.value = true
     }
 }

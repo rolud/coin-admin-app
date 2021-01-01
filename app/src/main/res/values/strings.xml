@@ -16,7 +16,9 @@
     <string name="digit_8">8</string>
     <string name="digit_9">9</string>
 
+    <string name="log_in">Accedi</string>
     <string name="cancel">Annulla</string>
+    <string name="authorizes">Autorizza</string>
     <string name="close">Chiudi</string>
     <string name="delete">Elimina</string>
     <string name="back">Indietro</string>
@@ -24,6 +26,8 @@
     <string name="edit">Modifica</string>
     <string name="save">Salva</string>
     <string name="select">Seleziona</string>
+    <string name="use_pin">USA IL PIN</string>
+
 
     <string name="amount_euros">%1$s €</string>
 
@@ -51,10 +55,12 @@
     <string name="settings">Impostazioni</string>
     <string name="settings_categories">Gestione categorie</string>
     <string name="settings_create_pin">Imposta pin</string>
-    <string name="settings_edit_pin">Impostazioni</string>
+    <string name="settings_edit_pin">Modifica pin</string>
     <string name="settings_use_fingerprint">Accedi con l\'impronta digitale</string>
+
 
     <string name="pin_insert_pin">Inserisci PIN</string>
     <string name="pin_insert_new_pin">Scegli il nuovo PIN</string>
 
+    <string name="menu_pin_delete_pin">Disabilita PIN</string>
 </resources>

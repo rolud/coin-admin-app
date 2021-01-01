@@ -3,16 +3,26 @@ package com.flockware.coinadmin.ui.main
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.flockware.coinadmin.R
 import com.flockware.coinadmin.databinding.ActivityPinBinding
 import com.flockware.coinadmin.utils.ColorUtils
 import org.koin.android.viewmodel.ext.android.getViewModel
+import java.util.concurrent.Executor
 
 class InsertPinActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPinBinding
     private lateinit var viewModel: InsertPinViewModel
+
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +33,7 @@ class InsertPinActivity : AppCompatActivity() {
         viewModel = getViewModel()
 
         setClickListeners()
-
+        setUpBiometricAuthentication()
         observeData()
 
         viewModel.checkExistingPin()
@@ -122,6 +132,14 @@ class InsertPinActivity : AppCompatActivity() {
         }
     }
 
+    private fun biometricAuthSucceeded() {
+        binding.apPinDigit1View.setBackgroundResource(R.drawable.background_circle)
+        Handler().postDelayed({ binding.apPinDigit2View.setBackgroundResource(R.drawable.background_circle) }, 120)
+        Handler().postDelayed({ binding.apPinDigit3View.setBackgroundResource(R.drawable.background_circle) }, 240)
+        Handler().postDelayed({ binding.apPinDigit4View.setBackgroundResource(R.drawable.background_circle) }, 360)
+        Handler().postDelayed({ pinValid() }, 480)
+    }
+
     private fun pinNotValid() {
         binding.apply {
             apPinDigit1View.backgroundTintList = ColorStateList.valueOf(ColorUtils.DARTH_MAUL)
@@ -158,11 +176,39 @@ class InsertPinActivity : AppCompatActivity() {
 
     private fun startApp() {
         val intent = Intent(this@InsertPinActivity, MainActivity::class.java).apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
-        this@InsertPinActivity.startActivity(intent)
-
+        this.startActivity(intent)
+        this.finish()
     }
+
+    private fun setUpBiometricAuthentication() {
+        executor = ContextCompat.getMainExecutor(this)
+        biometricPrompt = BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                super.onAuthenticationSucceeded(result)
+                biometricAuthSucceeded()
+            }
+        })
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+                .setTitle(resources.getString(R.string.log_in))
+                .setNegativeButtonText(resources.getString(R.string.use_pin))
+                .build()
+
+        if (viewModel.isBiometricAuthEnabled) {
+            binding.apPinKbFingerprint.visibility = View.VISIBLE
+            binding.apPinKbFingerprint.setOnClickListener { showBiometricAuthentication() }
+            showBiometricAuthentication()
+        } else {
+            binding.apPinKbFingerprint.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun showBiometricAuthentication() {
+        biometricPrompt.authenticate(promptInfo)
+    }
+
 
 
 }

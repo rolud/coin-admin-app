@@ -2,7 +2,11 @@ package com.flockware.coinadmin.ui.settings
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.os.Handler
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import com.flockware.coinadmin.R
 import com.flockware.coinadmin.databinding.ActivityPinBinding
@@ -72,6 +76,14 @@ class SetPinActivity: AppCompatActivity() {
         viewModel.pinSaved.observe(this) { saved ->
             if (saved == true) this.finish()
         }
+
+        viewModel.pinValid.observe(this) { valid ->
+            if (valid)
+                oldPinValid()
+            else
+                oldPinNotValid()
+
+        }
     }
 
     private fun setKeyboard() {
@@ -104,8 +116,64 @@ class SetPinActivity: AppCompatActivity() {
             apTitleTv.text = resources.getString(R.string.pin_insert_new_pin)
             apPinKbFingerprint.visibility = View.INVISIBLE
             apBackground.backgroundTintList = ColorStateList.valueOf(ColorUtils.getColorPrimary(this@SetPinActivity))
+            apMenuIv.setOnClickListener { openMenu(it) }
+            apMenuIv.visibility = View.VISIBLE
             viewModel.removeAllDigits()
         }
+    }
+
+    private fun oldPinValid() {
+        binding.apProgressBar.visibility = View.VISIBLE
+        Handler().postDelayed({
+            binding.apProgressBar.visibility = View.GONE
+            viewModel.prepareForNewPin()
+        }, 350)
+    }
+
+    private fun oldPinNotValid() {
+        binding.apply {
+            apPinDigit1View.backgroundTintList = ColorStateList.valueOf(ColorUtils.DARTH_MAUL)
+            apPinDigit2View.backgroundTintList = ColorStateList.valueOf(ColorUtils.DARTH_MAUL)
+            apPinDigit3View.backgroundTintList = ColorStateList.valueOf(ColorUtils.DARTH_MAUL)
+            apPinDigit4View.backgroundTintList = ColorStateList.valueOf(ColorUtils.DARTH_MAUL)
+
+            apPinContainer.animate()
+                    .setDuration(150)
+                    .translationX(50f)
+                    .withEndAction {
+                        apPinContainer.animate()
+                                .setDuration(150)
+                                .translationX(-50f)
+                                .withEndAction {
+                                    apPinContainer.animate()
+                                            .setDuration(150)
+                                            .translationX(0f)
+                                            .withEndAction {
+                                                apPinDigit1View.backgroundTintList = null
+                                                apPinDigit2View.backgroundTintList = null
+                                                apPinDigit3View.backgroundTintList = null
+                                                apPinDigit4View.backgroundTintList = null
+
+                                                viewModel.removeAllDigits()
+                                            }
+                                            .start()
+                                }
+                                .start()
+                    }
+                    .start()
+        }
+    }
+
+    private fun openMenu(view: View) {
+        val pm = PopupMenu(this, view)
+        pm.menuInflater.inflate(R.menu.pin_menu, pm.menu)
+        pm.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.pin_menu_remove_pin -> viewModel.removePin()
+            }
+            true
+        }
+        pm.show()
     }
 
 

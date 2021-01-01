@@ -17,10 +17,12 @@ class InsertPinViewModel(
     val pinValid: MutableLiveData<Boolean> = MutableLiveData()
     val startApp: MutableLiveData<Boolean> = MutableLiveData()
 
+    val isBiometricAuthEnabled: Boolean get() = sessionManager.isBiometricAuthEnabled
+
     fun checkExistingPin() {
-        if (sessionManager.pin.isNullOrEmpty())
-            startApp.value = true
+        startApp.value = sessionManager.pin.isNullOrEmpty()
     }
+
     fun insertDigit(digit: Int) {
         when {
             digit1.value == null -> digit1.value = digit

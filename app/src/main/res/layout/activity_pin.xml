@@ -10,6 +10,18 @@
     android:id="@+id/ap_background"
     tools:ignore="UnusedAttribute">
 
+    <ImageView
+        android:id="@+id/ap_menu_iv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_menu_dots"
+        app:tint="@color/white"
+        app:layout_constraintTop_toTopOf="@id/ap_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ap_title_tv"
+        android:contentDescription="@string/menu"
+        android:visibility="gone"/>
+
     <TextView
         android:id="@+id/ap_title_tv"
         android:layout_width="match_parent"
@@ -54,6 +66,17 @@
             android:background="@drawable/background_ring"
             android:layout_marginHorizontal="10dp" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/ap_progress_bar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:indeterminateTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/ap_pin_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ap_pin_kb_2"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/ap_pin_kb_1"
