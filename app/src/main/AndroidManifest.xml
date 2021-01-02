@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CoinAdmin">
-        <activity android:name=".ui.main.InsertPinActivity" android:screenOrientation="portrait">
+        <activity android:name=".ui.main.InsertPinActivity"
+            android:theme="@style/Theme.CoinAdmin.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
