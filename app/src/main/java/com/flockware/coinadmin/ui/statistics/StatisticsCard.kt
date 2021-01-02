@@ -60,57 +60,60 @@ class StatisticsCard @JvmOverloads constructor(
     }
 
     fun loadTransactions(transactions: List<Transaction>) {
-        val colors: MutableList<Int> = mutableListOf()
+        val paidInColors: MutableList<Int> = mutableListOf()
 
         paidInEntries.clear()
         transactions.filter { it.type == Transaction.TransactionType.PAID_IN }
             .groupBy { it.category }
             .forEach { mapEntry ->
-                LoggerCompat.verbose("${mapEntry.key?.name}", "category paid in")
                 val amount = mapEntry.value.sumOf { it.amount.toDouble() }.toFloat()
                 paidInEntries.add( PieEntry(amount, mapEntry.key?.name ?: resources.getString(R.string.transaction_no_category)) )
-                colors.add(Color.parseColor(mapEntry.key?.color?: "#b3b3b3"))
+                if (mapEntry.key?.color != null)
+                    paidInColors.add(Color.parseColor(mapEntry.key!!.color!!))
+                else
+                    paidInColors.add(ColorUtils.getColorBackground(context))
             }
 
         if (paidInEntries.isEmpty()) {
             paidInEntries.add( PieEntry(1f, "nothing"))
-            colors.add(ColorUtils.GRAY_OVERLAY)
+            paidInColors.add(ColorUtils.GRAY_OVERLAY)
         }
 
         val paidInSet = PieDataSet(paidInEntries, resources.getString(R.string.transaction_paid_in))
         paidInSet.sliceSpace = 2f
-        paidInSet.colors = colors
+        paidInSet.colors = paidInColors
         paidInSet.setDrawValues(false)
         val paidInData = PieData(paidInSet)
         binding.csChartPaidIn.data = paidInData
         binding.csChartPaidIn.invalidate()
         binding.csChartPaidIn.animateY(700)
 
-        colors.clear()
+        val paidOutColors: MutableList<Int> = mutableListOf()
         paidOutEntries.clear()
         transactions.filter { it.type == Transaction.TransactionType.PAID_OUT }
             .groupBy { it.category }
             .forEach { mapEntry ->
-                LoggerCompat.verbose("${mapEntry.key?.name}", "category paid out")
                 val amount = mapEntry.value.sumOf { it.amount.toDouble() }.toFloat()
                 paidOutEntries.add( PieEntry(amount, mapEntry.key?.name ?: resources.getString(R.string.transaction_no_category)) )
-                colors.add(Color.parseColor(mapEntry.key?.color?: "#b3b3b3"))
+                if (mapEntry.key?.color != null)
+                    paidOutColors.add(Color.parseColor(mapEntry.key!!.color!!))
+                else
+                    paidOutColors.add(ColorUtils.getColorBackground(context))
             }
 
         if (paidOutEntries.isEmpty()) {
             paidOutEntries.add( PieEntry(1f, "nothing"))
-            colors.add(ColorUtils.GRAY_OVERLAY)
+            paidOutColors.add(ColorUtils.GRAY_OVERLAY)
         }
 
         val paidOutSet = PieDataSet(paidOutEntries, resources.getString(R.string.transaction_paid_out))
         paidOutSet.sliceSpace = 2f
-        paidOutSet.colors = colors
+        paidOutSet.colors = paidOutColors
         paidOutSet.setDrawValues(false)
         val paidOutData = PieData(paidOutSet)
         binding.csChartPaidOut.data = paidOutData
         binding.csChartPaidOut.invalidate()
         binding.csChartPaidOut.animateY(700)
-        LoggerCompat.log("${binding.csChartPaidOut.data.dataSet.entryCount}", "PaidPut")
     }
 
 }

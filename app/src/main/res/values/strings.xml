@@ -60,6 +60,7 @@
     <string name="settings_create_pin">Imposta pin</string>
     <string name="settings_edit_pin">Modifica pin</string>
     <string name="settings_use_fingerprint">Accedi con l\'impronta digitale</string>
+    <string name="settings_export">Esporta database</string>
 
 
     <string name="pin_insert_pin">Inserisci PIN</string>
