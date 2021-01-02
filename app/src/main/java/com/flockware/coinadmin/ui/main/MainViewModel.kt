@@ -51,6 +51,9 @@ class MainViewModel(
     }
 
     fun selectMonth(position: Int) {
+        if (position < monthsList.size && currentMonth == monthsList[position])
+            return
+
         val currentMonth = monthsList[position]
         when {
             position <= 2 -> {

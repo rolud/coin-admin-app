@@ -12,6 +12,9 @@ object ColorUtils {
     @ColorInt const val WHITE: Int = 0xffffffff.toInt()
     @ColorInt const val CHIARO_DI_LUNA : Int = 0xfff6f6f6.toInt()
 
+    @ColorInt const val WHITE_TRANSPARENT: Int = 0x88ffffff.toInt()
+    @ColorInt const val GRAY_OVERLAY : Int = 0x22ababab.toInt()
+
     @ColorInt const val BLACK       : Int = 0xff000000.toInt()
     @ColorInt const val CARBONE     : Int = 0xff121212.toInt()
     @ColorInt const val LAVA        : Int = 0xff222222.toInt()

@@ -119,13 +119,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeData() {
         viewModel.monthsListUpdated.observe(this) { updated ->
-            if (updated == true)
+            if (updated == true) {
                 monthsController.requestModelBuild()
+            }
         }
 
         viewModel.transactionsListUpdated.observe(this) { updated ->
-            if (updated == true)
+            if (updated == true) {
                 transactionsController.requestModelBuild()
+                binding.amStatisticsCard.loadTransactions(viewModel.transactionsList)
+            }
         }
 
         viewModel.transactionsLive.observe(this) {

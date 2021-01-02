@@ -79,5 +79,6 @@ dependencies {
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
 
     implementation "com.github.adityagohad:HorizontalPicker:1.0.1"
+    implementation "com.github.PhilJay:MPAndroidChart:v3.1.0"
     implementation "com.github.skydoves:colorpickerview:2.2.2"
 }
