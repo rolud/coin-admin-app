@@ -28,8 +28,8 @@
     <style name="Theme.CoinAdmin.SplashScreen" parent="Theme.CoinAdmin">
         <item name="android:windowBackground">@drawable/splashscreen</item>
         <item name="android:navigationBarColor">@color/blu_notte</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
 
