@@ -3,7 +3,7 @@
 
     <item android:drawable="@drawable/background_gradient"/>
     <item>
-        <bitmap android:src="@drawable/logo" android:gravity="center" />
+        <bitmap android:src="@drawable/logo_coin_admin" android:gravity="center" />
     </item>
     <item android:bottom="25dp">
         <bitmap android:src="@drawable/text_flockware" android:gravity="bottom" />
