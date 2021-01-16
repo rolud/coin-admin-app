@@ -29,6 +29,8 @@
 
         <activity android:name=".ui.settings.SettingsActivity" android:screenOrientation="portrait" />
         <activity android:name=".ui.settings.SetPinActivity" android:screenOrientation="portrait" />
+
+        <activity android:name=".ui.statistics.StatisticsActivity" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

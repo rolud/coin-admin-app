@@ -94,6 +94,30 @@
         app:layout_constraintEnd_toEndOf="@id/endGuideline" />
 
 
+
+    <ImageView
+        android:id="@+id/as_import_iv"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_import"
+        app:tint="?attr/colorContent"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/as_fingerprint_iv"
+        app:layout_constraintStart_toStartOf="@id/startGuideline"
+        android:contentDescription="@string/settings_import" />
+    <TextView
+        android:id="@+id/as_import_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_import"
+        android:textSize="16sp"
+        android:includeFontPadding="false"
+        android:layout_marginStart="@dimen/standard_screen_padding_half"
+        app:layout_constraintTop_toTopOf="@id/as_import_iv"
+        app:layout_constraintStart_toEndOf="@id/as_export_iv"
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintBottom_toBottomOf="@id/as_import_iv"/>
+
     <ImageView
         android:id="@+id/as_export_iv"
         android:layout_width="25dp"
@@ -101,9 +125,9 @@
         android:src="@drawable/ic_export"
         app:tint="?attr/colorContent"
         android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@id/as_fingerprint_iv"
+        app:layout_constraintTop_toBottomOf="@id/as_import_iv"
         app:layout_constraintStart_toStartOf="@id/startGuideline"
-        android:contentDescription="@string/settings_use_fingerprint" />
+        android:contentDescription="@string/settings_export" />
     <TextView
         android:id="@+id/as_export_tv"
         android:layout_width="0dp"

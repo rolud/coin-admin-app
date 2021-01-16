@@ -32,6 +32,18 @@ fun Date.minusMonths(value: Int) : Date {
 fun Date.nextMonth() : Date = this.plusMonths(1)
 fun Date.previousMonth() : Date = this.minusMonths(1)
 
+fun Date.getMonthDays() : Int {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    return cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+}
+
+fun Date.getDayOfTheMonth(): Int {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    return cal[Calendar.DAY_OF_MONTH]
+}
+
 fun Date.pattern(pattern: DatePattern) : String {
     val format = SimpleDateFormat(pattern.pattern, Locale.getDefault())
     return format.format(this)

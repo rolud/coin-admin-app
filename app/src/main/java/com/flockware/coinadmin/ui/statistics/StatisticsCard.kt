@@ -31,6 +31,7 @@ class StatisticsCard @JvmOverloads constructor(
     }
 
     private fun initCharts() {
+        binding.csChartPaidIn.isEnabled = false
         binding.csChartPaidIn.apply {
             description.isEnabled = false
             holeRadius = 65f
@@ -45,6 +46,7 @@ class StatisticsCard @JvmOverloads constructor(
 
         }
 
+        binding.csChartPaidOut.isEnabled = false
         binding.csChartPaidOut.apply {
             description.isEnabled = false
             holeRadius = 65f

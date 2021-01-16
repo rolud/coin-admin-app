@@ -15,10 +15,10 @@
         android:ellipsize="end"
         android:textSize="13sp"
         android:layout_marginVertical="5dp"
-        android:layout_marginEnd="@dimen/standard_screen_padding_half"
+        android:layout_marginStart="@dimen/standard_screen_padding_half"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/vcpm_category_color_iv"
+        app:layout_constraintStart_toEndOf="@id/vcpm_category_color_iv"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageView
@@ -27,7 +27,7 @@
         android:layout_height="15dp"
         android:src="@drawable/background_circle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="ContentDescription" />
 

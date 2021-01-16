@@ -13,13 +13,15 @@ import com.flockware.coinadmin.data.models.Category
 import com.flockware.coinadmin.databinding.DialogCategoriesPickerBinding
 import com.flockware.coinadmin.ui.transaction.controllers.CategoriesPickerController
 
-class CategoriesPickerDialog(context: Context, val categoriesList: List<Category>) : Dialog(context) {
+class CategoriesPickerDialog(context: Context, val categoriesList: List<Category>, val isForStatistics: Boolean = false) : Dialog(context) {
 
     private lateinit var binding: DialogCategoriesPickerBinding
     private lateinit var controller: CategoriesPickerController
 
     var onAddCategory: () -> Unit = {}
     var onSelectedCategory: (Category) -> Unit = {}
+    var onSelectedGeneral: () -> Unit = {}
+    var onSelectedNullCategory: () -> Unit = {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +48,22 @@ class CategoriesPickerDialog(context: Context, val categoriesList: List<Category
             layoutManager = LinearLayoutManager(this@CategoriesPickerDialog.context)
             adapter = controller.adapter
         }
+        controller.isForStatistics = isForStatistics
         controller.onAddClick = {
             onAddCategory()
+
             this.dismiss()
         }
         controller.onCategoryClick = {
             onSelectedCategory(it)
+            this.dismiss()
+        }
+        controller.onGenericClick = {
+            onSelectedGeneral()
+            this.dismiss()
+        }
+        controller.onNullCategoryClick = {
+            onSelectedNullCategory()
             this.dismiss()
         }
         controller.requestModelBuild()

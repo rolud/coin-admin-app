@@ -11,6 +11,7 @@ import com.flockware.coinadmin.ui.dialogs.BottomSheetMenu
 import com.flockware.coinadmin.ui.main.controllers.MonthsPickerController
 import com.flockware.coinadmin.ui.main.controllers.TransactionsController
 import com.flockware.coinadmin.ui.settings.SettingsActivity
+import com.flockware.coinadmin.ui.statistics.StatisticsActivity
 import com.flockware.coinadmin.ui.transaction.AddTransactionActivity
 import com.flockware.coinadmin.utils.*
 import com.google.android.material.snackbar.Snackbar
@@ -108,6 +109,10 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             amToolbar.ctmaMenuIv.setOnClickListener {
                 val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                this@MainActivity.startActivity(intent)
+            }
+            amStatisticsCard.setOnClickListener {
+                val intent = Intent(this@MainActivity, StatisticsActivity::class.java)
                 this@MainActivity.startActivity(intent)
             }
             amFab.setOnClickListener {

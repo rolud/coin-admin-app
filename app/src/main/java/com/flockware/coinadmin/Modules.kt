@@ -9,6 +9,7 @@ import com.flockware.coinadmin.ui.main.InsertPinViewModel
 import com.flockware.coinadmin.ui.main.MainViewModel
 import com.flockware.coinadmin.ui.settings.SetPinViewModel
 import com.flockware.coinadmin.ui.settings.SettingsViewModel
+import com.flockware.coinadmin.ui.statistics.StatisticsViewModel
 import com.flockware.coinadmin.ui.transaction.AddTransactionViewModel
 import com.flockware.coinadmin.utils.SessionManager
 import org.koin.android.ext.koin.androidApplication
@@ -39,6 +40,8 @@ val viewModelsModule = module {
     viewModel { AddCategoryViewModel(get(), get()) }
 
     viewModel { AddTransactionViewModel(get(), get()) }
+
+    viewModel { StatisticsViewModel(get(), get()) }
 
     viewModel { SettingsViewModel(get()) }
     viewModel { InsertPinViewModel(get()) }

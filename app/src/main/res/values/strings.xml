@@ -31,6 +31,8 @@
 
 
     <string name="amount_euros">%1$s €</string>
+    <string name="standing_position">%1$d. %2$s</string>
+    <string name="standing_position_null">%1$d. …</string>
 
     <string name="transaction_new">Nuovo movimento</string>
     <string name="transaction_category">Categoria</string>
@@ -60,6 +62,7 @@
     <string name="settings_create_pin">Imposta pin</string>
     <string name="settings_edit_pin">Modifica pin</string>
     <string name="settings_use_fingerprint">Accedi con l\'impronta digitale</string>
+    <string name="settings_import">Importa database</string>
     <string name="settings_export">Esporta database</string>
 
 
@@ -67,4 +70,6 @@
     <string name="pin_insert_new_pin">Scegli il nuovo PIN</string>
 
     <string name="menu_pin_delete_pin">Disabilita PIN</string>
+
+    <string name="statistics_title">Statistiche</string>
 </resources>
