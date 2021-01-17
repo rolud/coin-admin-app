@@ -44,6 +44,20 @@ fun Date.getDayOfTheMonth(): Int {
     return cal[Calendar.DAY_OF_MONTH]
 }
 
+/**
+ * @return day of the week according to Italian style
+ * MON = 1, TUE = 2, WEN = 3, THU = 4,
+ * FRI = 5, SAT = 6, SUN = 7
+ */
+fun Date.getDayOfTheWeek(): Int {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    return when (cal[Calendar.DAY_OF_WEEK]) {
+        Calendar.SUNDAY -> 7
+        else -> cal[Calendar.DAY_OF_WEEK] - 1
+    }
+}
+
 fun Date.pattern(pattern: DatePattern) : String {
     val format = SimpleDateFormat(pattern.pattern, Locale.getDefault())
     return format.format(this)

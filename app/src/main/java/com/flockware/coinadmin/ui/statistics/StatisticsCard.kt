@@ -43,6 +43,7 @@ class StatisticsCard @JvmOverloads constructor(
             setCenterTextSize(12f)
             setDrawEntryLabels(false)
             setUsePercentValues(false)
+            setTouchEnabled(false)
 
         }
 
@@ -58,6 +59,7 @@ class StatisticsCard @JvmOverloads constructor(
             setCenterTextSize(12f)
             setDrawEntryLabels(false)
             setUsePercentValues(false)
+            setTouchEnabled(false)
         }
     }
 
